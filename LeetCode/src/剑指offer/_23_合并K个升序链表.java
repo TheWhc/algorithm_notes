@@ -28,16 +28,6 @@ public class _23_合并K个升序链表 {
 
 		return res;
 	}*/
-	public static void main(String[] args) {
-		ListNode[] lists = new ListNode[2];
-		ListNode list = new ListNode(1);
-		list.next = new ListNode(4);
-		ListNode list1 = new ListNode(1);
-		list1.next = new ListNode(3);
-		lists[0] = list;
-		lists[1] = list1;
-		new _23_合并K个升序链表().mergeKLists(lists);
-	}
 
 	/**
 	 *  思路: 归并排序

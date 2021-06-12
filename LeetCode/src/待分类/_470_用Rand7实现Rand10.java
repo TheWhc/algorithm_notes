@@ -5,7 +5,7 @@ package 待分类;
  * @Author: whc
  * @Date: 2021/03/25/14:27
  */
-public class _470_用Rand7实现Rand10 extends SolBase {
+/*public class _470_用Rand7实现Rand10 extends SolBase {
 
 	public int rand10() {
 		while(true) {
@@ -16,4 +16,4 @@ public class _470_用Rand7实现Rand10 extends SolBase {
 			}
 		}
 	}
-}
+}*/

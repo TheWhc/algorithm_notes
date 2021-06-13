@@ -27,7 +27,7 @@ public class _121_买卖股票的最佳时机 {
 			res = Math.max(res, prices[i] - leftMin);
 		}
 		return res;
-	}*/
+	}
 
 	/**
 	 *  思路: 动态规划

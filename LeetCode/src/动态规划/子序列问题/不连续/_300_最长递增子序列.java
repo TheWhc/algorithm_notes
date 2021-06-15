@@ -1,4 +1,4 @@
-package 动态规划.子序列问题;
+package 动态规划.子序列问题.不连续;
 
 import java.util.Arrays;
 

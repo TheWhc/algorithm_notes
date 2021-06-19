@@ -26,6 +26,8 @@ public class _78_子集 {
 	 * 3. 单层搜索的过程
 	 * 	  for循环每次从startIndex开始
 	 *
+	 * 时间: O(n * 2^n)  每一个元素的状态无外乎取与不取,所以时间复杂度为O(2^n) 构造每一组子集都需要填进数组,又需要O(n)
+	 * 空间: O(n) 		递归深度为n
 	 */
 	List<List<Integer>> res = new ArrayList<>();
 	List<Integer> path = new ArrayList<>();

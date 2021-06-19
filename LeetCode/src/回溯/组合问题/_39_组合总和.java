@@ -26,6 +26,9 @@ public class _39_组合总和 {
 	 *
 	 * 3. 单层搜索的过程
 	 * 	  for循环每次从startIndex开始
+	 *
+	 * 时间: O(n * 2^n) 组合问题其实也是一种子集问题,所以时间复杂度不会超过子集的时间复杂度
+	 * 空间: O(n)
 	 */
 	/*List<List<Integer>> res = new ArrayList<>();
 	List<Integer> path = new ArrayList<>();

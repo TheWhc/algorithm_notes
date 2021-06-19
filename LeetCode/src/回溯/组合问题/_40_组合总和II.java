@@ -32,6 +32,8 @@ public class  _40_组合总和II {
 	 * 3. 单层搜索的过程
 	 * 	  for循环每次从startIndex开始, 因为是排序数组,所以如果遍历到i时, targetSum已经小于0,则后面就不用再遍历了
 	 *
+	 * 时间: O(n * 2^n) 组合问题其实也是一种子集问题,所以时间复杂度不会超过子集的时间复杂度
+	 * 空间: O(n)
 	 */
 	List<List<Integer>> res = new ArrayList<>();
 	List<Integer> path = new ArrayList<>();

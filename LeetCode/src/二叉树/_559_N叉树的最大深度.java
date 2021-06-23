@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * @Date: 2021/04/17/10:01
  */
 public class _559_N叉树的最大深度 {
-
+/*
 	public int maxDepth(Node root) {
 		return getDepth(root);
 	}
@@ -22,7 +22,7 @@ public class _559_N叉树的最大深度 {
 		}
 
 		return depth + 1;
-	}
+	}*/
 
 	// 迭代法
 	/*public int maxDepth(Node root) {

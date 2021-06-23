@@ -1,6 +1,5 @@
 package 回溯.树相关问题;
 
-import 二叉树.二叉树的属性.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

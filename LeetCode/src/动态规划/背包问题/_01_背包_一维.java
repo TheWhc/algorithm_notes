@@ -7,24 +7,49 @@ package 动态规划.背包问题;
  */
 public class _01_背包_一维 {
 
-	/*static void wei_bag_problem() {
-		int[] weight = {1, 3, 4};
-		int[] value = {15, 20, 30};
-		int bagWeight = 4;
+	/**
+	 * 背包最大重量为4
+	 *
+	 *        重量	 价值
+	 * 物品0	   1	  15
+	 * 物品1	   3	  20
+	 * 物品2	   4	  30
+	 *
+	 *
+	 */
 
-		// 初始化
-		int[] dp = new int[bagWeight + 1];
-
-		// 遍历顺序
-		for (int i = 0; i < weight.length; i++) { // 遍历物品
-			for (int j = bagWeight; j >= weight[i]; j--) { // 遍历背包容量
-				dp[j] = Math.max(dp[j], dp[j-weight[i]] + value[i]);
-			}
-		}
-
-		System.out.println(dp[bagWeight]);
-	}*/
-
+	/**
+	 * 思路: 一维数组01背包
+	 *
+	 * 1. 确定dp数组以及下标含义
+	 * dp[j]: 表示容量为j的背包的最大价值
+	 *
+	 * 2. 确定递推公式
+	 * dp[j] = Math.max(dp[j], dp[j-weight[i]] + value[i])
+	 *               不放入当前物品     放入当前物品
+	 *
+	 * 3. 初始化
+	 * 	 dp[0] = 0
+	 *
+	 * 4. 确定遍历顺序
+	 * 先遍历物品,再遍历背包容量
+	 * 遍历背包容量的时候,应该是倒叙遍历
+	 *
+	 * 如果是正序遍历的话
+	 * dp[1] = dp[1-weight[0]] + value[0] = 15
+	 * dp[2] = dp[2-weight[0]] + value[0] = 15 + 15 =  30
+	 * 重复放了2次
+	 *
+	 * 如果是倒叙遍历的话
+	 * dp[2] = dp[2-weight[0]] + value[0] = 15
+	 * dp[1] = dp[1-weight[0]] + value[0] = 15
+	 *
+	 * 5. 举例推导递推公式
+	 *      背包容量:   0  1  2  3  4
+	 * 用物品0,遍历背包: 0 15 15 15 15
+	 * 用物品1,遍历背包: 0 15 15 20 35
+	 * 用物品2,遍历背包: 0 15 15 20 35
+	 */
 	public static void wei_bag_problem() {
 		int[] weight = {1,3,4};
 		int[] value = {15, 20, 30};
@@ -36,7 +61,6 @@ public class _01_背包_一维 {
 
 		// 2. 确定递推公式
 		// dp[i][j] = Math.max(dp[i-1][j], dp[i-1][j-weight[i]] + value[i]) 不放入物品, 放入物品
-		// dp[i][j] = Math.max(dp[i][j], dp[i][j-weight[i]] + value[i])
 		// 所以一维数组时,递推公式如下
 		// dp[j] = Math.max(dp[j], dp[j-weight[i]] + value[i])
 
@@ -51,20 +75,9 @@ public class _01_背包_一维 {
 			// 倒叙遍历
 			// 从后往前循环，每次取得状态不会和之前取得状态重合，这样每种物品就只取一次了。
 			// 背包容量从大到小,与二维dp写法不同(二维正序倒叙都可),倒叙遍历目的是使得物品i只被放入一次
-			// 如果为正序遍历的话,会导致物品被重复放入多次
-			// 物品0的重量weight[0]=1, value[0]=15
-			// 正序遍历的话, dp[1] = dp[1-weight[0]] + 15 = 15
-			// dp[2] = dp[2-weight[0]] + 15 = 15 + 15 = 30
-			// 倒序遍历的话, dp[2] = dp[2-weight[0]] + 15 = 15 (dp数组已经初始化为0)
-			// dp[1] = dp[1-weight[0]] + 15 = 15
 			for (int j = bagweight; j >= weight[i]; j--) {
 				dp[j] = Math.max(dp[j], dp[j-weight[i]] + value[i]);
 			}
-
-			for (int k = 0; k < dp.length; k++) {
-				System.out.print(dp[k] + " ");
-			}
-			System.out.println();
 		}
 
 		// (错误写法)先背包容量,后物品情况
@@ -77,19 +90,6 @@ public class _01_背包_一维 {
 				}
 			}
 		}*/
-
-		// (错误写法)若背包容量正序遍历,会出现重复放入物品问题,且先遍历背包容量,还会出现每个dp[j]最后只会存放一个物品
-		/*for (int j = 0; j <= bagweight; j++) {
-			for (int i = 0; i < weight.length; i++) {
-				if(j >= weight[i]) {
-					dp[j] = Math.max(dp[j], dp[j-weight[i]] + value[i]);
-				}
-			}
-		}*/
-
 	}
 
-	public static void main(String[] args) {
-		wei_bag_problem();
-	}
 }

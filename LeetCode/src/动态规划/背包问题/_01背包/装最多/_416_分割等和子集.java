@@ -1,4 +1,4 @@
-package 动态规划.背包问题;
+package 动态规划.背包问题._01背包.装最多;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,8 +70,10 @@ public class _416_分割等和子集 {
 	}*/
 
 
+	// 求背包是否正好装满
+
 	/**
-	 * 思路: 01背包
+	 * 思路: _01背包
 	 *
 	 * 如何转化为01背包?
 	 * - 背包体积(重量)为sum/2

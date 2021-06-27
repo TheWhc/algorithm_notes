@@ -6,7 +6,7 @@ package 动态规划.背包问题;
  * @Date: 2021/05/04/9:24
  */
 // strs里面的元素是物品,每个物品都是一个
-// 01背包   m和n相当于是一个背包,两个维度的背包
+// _01背包   m和n相当于是一个背包,两个维度的背包
 public class _474_一和零 {
 
 	public int findMaxForm(String[] strs, int m, int n) {

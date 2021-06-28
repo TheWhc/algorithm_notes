@@ -1,8 +1,4 @@
-package 动态规划.背包问题._01背包.装最多;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+package 动态规划.背包问题._01背包.装最多问题;
 
 /**
  * @ClassName: _416_分割等和子集

@@ -45,7 +45,7 @@ public class _654_最大二叉树 {
 	 * 思路: 递归划分
 	 * 1. 递归函数的返回值以及参数的含义
 	 * TreeNode constructMaximumBinaryTree(int[] nums, int left, int right)
-	 * nums: 数组
+	 * nums: 数组快慢指针
 	 * left: 需要构建二叉树的数组左边界
 	 * right: 需要构建二叉树的数组右边界
 	 *

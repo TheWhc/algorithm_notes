@@ -1,4 +1,4 @@
-package 双指针法.数组;
+package 双指针法.数组快慢指针;
 
 /**
  * @ClassName: _27_移除元素

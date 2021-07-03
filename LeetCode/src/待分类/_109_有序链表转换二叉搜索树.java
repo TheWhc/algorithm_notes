@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class _109_有序链表转换二叉搜索树 {
 
-	// 数组 + 递归  有序链表转化为有序数组
+	// 数组快慢指针 + 递归  有序链表转化为有序数组
 	/*public TreeNode sortedListToBST(ListNode head) {
 		List<Integer> list = new ArrayList<>();
 		while(head != null) {

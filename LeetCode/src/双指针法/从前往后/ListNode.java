@@ -1,4 +1,4 @@
-package 双指针法;
+package 双指针法.从前往后;
 
 /**
  * @ClassName: ListNode
@@ -6,9 +6,9 @@ package 双指针法;
  * @Date: 2021/04/15/15:41
  */
 public class ListNode {
-	public int val;
-	public ListNode next;
-	public ListNode(int x) {
+	int val;
+	ListNode next;
+	ListNode(int x) {
 		val = x;
 		next = null;
 	}

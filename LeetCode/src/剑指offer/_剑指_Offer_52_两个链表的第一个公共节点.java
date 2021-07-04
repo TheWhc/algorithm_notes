@@ -23,20 +23,14 @@ public class _剑指_Offer_52_两个链表的第一个公共节点 {
 	 *  2. 相当于p走了a+b步, q走了b+a步
 	 */
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-		ListNode p = headA;
-		ListNode q = headB;
-		while(p != q) {
-			if(p == null) {
-				p = headB;
-			} else {
-				p = p.next;
-			}
-			if(q == null) {
-				q = headA;
-			} else {
-				q = q.next;
-			}
+		ListNode curA = headA;
+		ListNode curB = headB;
+
+		while(curA != curB) {
+			curA = curA == null ? headB : curA.next;
+			curB = curB == null ? headA : curB.next;
 		}
-		return p;
+
+		return curA;
 	}
 }

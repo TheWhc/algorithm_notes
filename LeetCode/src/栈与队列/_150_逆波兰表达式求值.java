@@ -9,30 +9,31 @@ import java.util.Stack;
  */
 public class _150_逆波兰表达式求值 {
 
-	public static void main(String[] args) {
-		System.out.println(evalRPN(new String[]{"2", "1", "+", "3", "*"}));
-	}
+	/**
+	 * 思路: 栈
+	 */
 
-	public static int evalRPN(String[] tokens) {
-		Stack<Integer> stack = new Stack<>();
-		for (String token : tokens) {
-			if(stack.isEmpty() || !(token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/"))) {
-				stack.push(Integer.valueOf(token));
+	public int evalRPN(String[] tokens) {
+		Stack<String> stack = new Stack<>();
+
+		for(String token : tokens) {
+			if(!(token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/"))) {
+				stack.push(token);
 			} else {
-				int num1 = stack.pop();
-				int num2 = stack.pop();
+				int num1 = Integer.valueOf(stack.pop());
+				int num2 = Integer.valueOf(stack.pop());
 				if(token.equals("+")) {
-					stack.push(num1 + num2);
+					stack.push(String.valueOf(num1 + num2));
 				} else if(token.equals("-")) {
-					stack.push(num2 - num1);
-				} else if (token.equals("*")) {
-					stack.push(num2 * num1);
+					stack.push(String.valueOf(num2 - num1));
+				} else if(token.equals("*")) {
+					stack.push(String.valueOf(num1 * num2));
 				} else {
-					stack.push(num2 / num1);
+					stack.push(String.valueOf(num2 / num1));
 				}
 			}
 		}
 
-		return stack.pop();
+		return Integer.valueOf(stack.pop());
 	}
 }

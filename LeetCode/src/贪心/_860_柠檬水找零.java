@@ -36,28 +36,30 @@ public class _860_柠檬水找零 {
 		return true;
 	}*/
 
+	/**
+	 * 思路: 贪心
+	 * 局部最优：遇到20块,优先消耗10块
+	 * 全局最优：完成全部账单的找零
+	 */
 	public boolean lemonadeChange(int[] bills) {
-		int five = 0, ten = 0, twenty = 0;
-		for (int bill : bills) {
-			// 情况一
-			if(bill == 5) five++;
+		int five = 0;
+		int ten = 0;
 
-			// 情况二
-			if(bill == 10) {
-				if(five <= 0) return false;
-				ten++;
+		for (int i = 0; i < bills.length; i++) {
+			if(bills[i] == 5) {
+				five++;
+			} else if(bills[i] == 10) {
+				if(five == 0) {
+					return false;
+				}
 				five--;
-			}
-
-			// 情况三
-			if(bill == 20) {
-				if(five > 0 && ten > 0) {
+				ten++;
+			} else {
+				if(five >= 1 && ten >= 1) {
 					five--;
 					ten--;
-					twenty++;
 				} else if(five >= 3) {
 					five -= 3;
-					twenty++;
 				} else {
 					return false;
 				}

@@ -8,32 +8,45 @@ import java.util.Arrays;
  * @Date: 2021/04/13/10:18
  */
 public class _135_分发糖果 {
-	public static void main(String[] args) {
-		candy(new int[]{1,2,2,5,4,3,2});
-	}
 
-	public static int candy(int[] ratings) {
-		int[] dp = new int[ratings.length];
-		Arrays.fill(dp, 1);
+	/**
+	 * 思路: 贪心
+	 * 两次贪心:
+	 * 	- 一次是从左往右遍历,只比较评分右边比左边高的情况
+	 * 	- 一次是从右往左遍历,只比较评分左边比右边高的情况
+	 *
+	 * 	为什么第二次是从右往左遍历？
+	 * 	原因是因为要利用上一次的比较结果
+	 *
+	 *
+	 */
+	public int candy(int[] ratings) {
 
-		// 右边评分比左边大,右边孩子就多一个糖果(从前往后)
-		for (int i = 1; i < ratings.length; i++) {
+		int[] candy = new int[ratings.length];
+		// 每个孩子至少拿一颗糖果
+		Arrays.fill(candy, 1);
+
+		// 第一次贪心,从前往后遍历
+		// 右边比左边评分高
+		for (int i = 1; i < candy.length; i++) {
 			if(ratings[i] > ratings[i-1]) {
-				dp[i] = dp[i-1] + 1;
+				candy[i] = candy[i-1] + 1;
 			}
 		}
 
-		// 左评分比右评分大,左边孩子就多一个糖果(从后往前,主要是因为要利用上一次比较结果)
-		for (int i = ratings.length-2; i >= 0; i--) {
+		// 第二次贪心,从后往前遍历
+		// 左边比右边评分高
+		for (int i = ratings.length - 2; i >= 0; i--) {
 			if(ratings[i] > ratings[i+1]) {
-				dp[i] = Math.max(dp[i], dp[i+1] + 1);
+				candy[i] = Math.max(candy[i+1] + 1, candy[i]);
 			}
 		}
 
 		int res = 0;
-		for (int i = 0; i < ratings.length; i++) {
-			res += dp[i];
+		for (int num : candy) {
+			res += num;
 		}
+
 		return res;
 	}
 }

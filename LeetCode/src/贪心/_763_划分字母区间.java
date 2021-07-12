@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class _763_划分字母区间 {
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		partitionLabels("ababcbacadefegdehijhklij");
 	}
 
@@ -40,6 +40,38 @@ public class _763_划分字母区间 {
 		}
 
 		return res;
+	}*/
+
+	/**
+	 * 思路: 贪心
+	 *
+	 * 1. 统计每个字符的最后出现位置
+	 * 2. 从头开始遍历字符串, 并更新字符的最远下标, 如果当前下标 == 字符的最远下标 , 则找到了分割点
+	 */
+	public List<Integer> partitionLabels(String s) {
+
+		int[] idxArray = new int[26];
+
+		for (int i = 0; i < s.length(); i++) {
+			idxArray[s.charAt(i) - 'a'] = i;
+		}
+
+		List<Integer> res = new ArrayList<>();
+
+		int left = 0;
+		int right = 0;
+		for (int i = 0; i < s.length(); i++) {
+			// 找到字符出现的最远边界
+			right = Math.max(right, idxArray[s.charAt(i) - 'a']);
+			if(i == right) {
+				res.add(right - left + 1);
+				left = i + 1;
+			}
+		}
+
+		return res;
 	}
+
+
 
 }

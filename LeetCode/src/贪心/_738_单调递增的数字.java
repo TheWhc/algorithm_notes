@@ -32,30 +32,39 @@ public class _738_单调递增的数字 {
 	}*/
 
 
-	// 贪心
-	// 策略: 局部最优: 遇到nums[i-1] > nums[i]的时候, nums[i-1]--, nums[i]变为9
-	// 从后往前遍历
-	public static void main(String[] args) {
-		monotoneIncreasingDigits(332);
-	}
-	public static int monotoneIncreasingDigits(int N) {
-		char[] nums = Integer.toString(N).toCharArray();
 
-		// 用一个flag来标记从哪里开始赋值9
-		int flag = nums.length;
+	/**
+	 * 思路: 贪心
+	 * 局部最优: 遇到nums[i-1] > nums[i]的时候, nums[i-1]--, nums[i]变为9
+	 *
+	 * 比如10
+	 *
+	 * 1. 从后往前遍历, 如果遇到nums[i-1] > nums[i], 那么nums[i-1]--
+	 * 2. 用start标记记录从哪个位置开始赋值9操作
+	 */
+	public int monotoneIncreasingDigits(int n) {
 
-		for (int i = nums.length-1; i > 0; i--) {
-			if(nums[i-1] > nums[i]) {
-				nums[i-1] -= 1;
-				flag = i;
-				nums[i] = '9';
+		char[] chars = Integer.toString(n).toCharArray();
+
+		int start = chars.length; // 记录从哪个位置开始赋值9
+
+		for (int i = chars.length - 1; i >= 1; i--) {
+			if(chars[i-1] > chars[i]) {
+				chars[i-1]--;
+				start = i;
 			}
 		}
 
-		for (int i = flag; i < nums.length; i++) {
-			nums[i] = '9';
+		for (int i = start; i < chars.length; i++) {
+			chars[i] = '9';
 		}
 
-		return Integer.parseInt(new String(nums));
+		return Integer.parseInt(new String(chars));
 	}
+
+	public static void main(String[] args) {
+		_738_单调递增的数字 _738_单调递增的数字 = new _738_单调递增的数字();
+		_738_单调递增的数字.monotoneIncreasingDigits(10);
+	}
+
 }

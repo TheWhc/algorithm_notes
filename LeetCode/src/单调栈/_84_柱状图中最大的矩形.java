@@ -38,6 +38,12 @@ public class _84_柱状图中最大的矩形 {
 	 * 思路: 单调栈 + 哨兵
 	 *
 	 * 哨兵是用来解决栈中的剩余元素
+	 *
+	 * 1. 栈中存储的是每个元素的下标, 若当前元素高度大于栈顶元素,则入栈(保持为单调递增栈)
+	 * 2. 若当前元素高度小于栈顶元素,则出栈,当前元素的右边界为i,左边界为栈顶元素,所以以刚才出栈的元素作为高度curHeight = height[i],
+	 * 宽度为 i - stack.peek() - 1
+	 *
+	 * 更新最大值的面积 = Math.max(curHeight * curWeight, area)
 	 */
 	public int largestRectangleArea(int[] heights) {
 		if(heights.length == 0) {

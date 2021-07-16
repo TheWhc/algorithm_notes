@@ -1,4 +1,4 @@
-package 图论.深度优先搜索.岛屿问题;
+package 深度优先搜索.岛屿问题;
 
 import java.util.HashMap;
 import java.util.HashSet;

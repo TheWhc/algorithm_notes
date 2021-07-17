@@ -15,6 +15,41 @@ public class QuickSort {
 		}
 	}
 
+	public static void quicksort(int[] arr, int left, int right) {
+		if(left < right) {
+			int mid = partition(arr, left, right);
+			quicksort(arr, left, mid-1);
+			quicksort(arr, mid+1, right);
+		}
+	}
+
+	private static int partition(int[] arr, int left, int right) {
+		int pivot = arr[left]; // 备份轴点元素
+
+		while(left < right) {
+			while(left < right) {
+				if(arr[right] > pivot) {
+					right--;
+				} else {
+					arr[left++] = arr[right];
+					break;
+				}
+			}
+
+			while(left < right) {
+				if(arr[left] < pivot) {
+					left++;
+				} else {
+					arr[right--] = arr[left];
+					break;
+				}
+			}
+		}
+
+		arr[left] = pivot;
+		return left;
+	}
+
 	/**
 	 *  思路: 快速排序填坑法
 	 *  1. 采用分治递归的思想
@@ -28,13 +63,18 @@ public class QuickSort {
 	 *  平均时间: O(nlogn)
 	 *          每一层划分时间为O(N)
 	 *          平均划分层数为O(logN)
-	 *  空间复杂度: O(logN)
+	 *  最好时间：O(nlogn)
 	 *
 	 *  最坏时间: O(N^2)
 	 *  		每一层划分时间为O(N)
 	 *  		最大划分层数为O(N)
+	 *
+	 *  空间复杂度: O(logN) 递归调用
+	 *
+	 *  稳定性: 不稳定
+	 *
 	 */
-	private static void quicksort(int[] arr, int left, int right) {
+	/*private static void quicksort(int[] arr, int left, int right) {
 		if(left < right) {
 			int mid = partition(arr, left, right);
 			quicksort(arr, left, mid-1);
@@ -68,6 +108,6 @@ public class QuickSort {
 
 		arr[left] = pivot;
 		return left;
-	}
+	}*/
 
 }

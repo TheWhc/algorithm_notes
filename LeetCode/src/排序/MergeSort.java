@@ -18,7 +18,10 @@ public class MergeSort {
 	 *     需要用到一个临时数组tempArr[]存储合并过程中的元素,最后将临时数组的元素复制回原来的数组中
 	 *
 	 * 时间: O(NlogN)    -> 每一层归并的时间是O(N),归并层数最大为O(logN+1)
+	 * 最好、最坏、平均: O(Nlogn)
 	 * 空间: O(N)        -> 一个临时数组
+	 *
+	 * 稳定性: 稳定
 	 */
 	public static void main(String[] args) {
 		int[] arr = new int[]{7,5,6,4};
@@ -31,7 +34,45 @@ public class MergeSort {
 
 	}
 
-	private static void mergeSort(int[] arr, int left, int right, int[] tmp) {
+	public static void mergeSort(int[] arr, int left, int right, int[] temp) {
+		if(left < right) {
+			int mid = left + (right - left) / 2;
+			// 先分治
+			mergeSort(arr, left, mid, temp);
+			mergeSort(arr, mid+1, right, temp);
+			// 后合并
+			merge(arr, left, mid, right, temp);
+		}
+	}
+
+	private static void merge(int[] arr, int left, int mid, int right, int[] temp) {
+		int l_pos = left; // 记录左半区第一个未排序的元素
+		int r_pos = mid+1; // 记录右半区第一个未排序的元素
+		int post = left; // 临时数组的下标
+
+		while(l_pos <= mid && r_pos <= right) {
+			if(arr[l_pos] < arr[r_pos]) {
+				temp[post++] = arr[l_pos++];
+			} else {
+				temp[post++] = arr[r_pos++];
+			}
+		}
+
+		while(l_pos <= mid) {
+			temp[post++] = arr[l_pos++];
+		}
+
+		while(r_pos <= right) {
+			temp[post++] = arr[r_pos++];
+		}
+
+		// 将临时数组复制回原来数组
+		for (int i = left; i <= right; i++) {
+			arr[i] = temp[i];
+		}
+	}
+
+	/*private static void mergeSort(int[] arr, int left, int right, int[] tmp) {
 		// 如果只有一个元素,那么就不需要继续划分
 		// 只有一个元素的区域,本来就是有序的,只需要被归并即可
 		if(left < right) {
@@ -79,6 +120,6 @@ public class MergeSort {
 			arr[left] = tempArr[left];
 			left++;
 		}
-	}
+	}*/
 
 }

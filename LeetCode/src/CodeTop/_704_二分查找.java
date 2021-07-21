@@ -7,6 +7,10 @@ package CodeTop;
  */
 public class _704_二分查找 {
 
+	/**
+	 *
+	 * while (left <= right) 用在要找的数的性质简单的时候，把区间分成三个部分，在循环体内就可以返回；
+	 */
 	public int search(int[] nums, int target) {
 		if(nums == null) {
 			return -1;

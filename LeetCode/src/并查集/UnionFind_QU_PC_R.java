@@ -3,6 +3,8 @@ package 并查集;
 import java.util.Arrays;
 
 /**
+ * 基于Rank的优化 + 路径压缩
+ *
  * 思路:  Quick Union Rank(按秩合并) + PC(路径压缩)
  * 合并的时候(union),如果fx和fy在两个不同的集合上,则将矮的树(树的高度)嫁接到高的树
  * 查找的时候(find),使路径上的所有节点都指向根节点,从而降低树的高度

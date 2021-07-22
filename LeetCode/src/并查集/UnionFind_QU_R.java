@@ -3,6 +3,9 @@ package 并查集;
 import java.util.Arrays;
 
 /**
+ * 对并查集的优化,基于Rank的优化,矮的树嫁接到高的树
+ * 用一个rank数组维护树的高度
+ *
  * 思路:  Quick Union Rank(按秩合并)
  * 合并的时候,如果fx和fy在两个不同的集合上,则将矮的树(树的高度)嫁接到高的树
  * 时间复杂度: 平均O(logn) 最坏O(logn)
@@ -44,13 +47,16 @@ public class UnionFind_QU_R {
 		// 如果两个元素所在集合的根触点相同,说明已经在同一个集合内,不需要合并
 		if(fx == fy) return;
 
-		// 树高的节点 不需要改变高度
+		// 将矮的树嫁接到高的树上,树高的节点 不需要改变高度
 		if(ranks[fx] < ranks[fy]) {
+			// fx根触点的高度 < fy根触点的高度
 			parents[fx] = fy;
 		} else if(ranks[fx] > ranks[fy]) {
+			// fx根触点的高度 > fy根触点的高度
 			parents[fy] = fx;
 		} else {
 			// 两根树的高度一样
+			// 将fx根触点嫁接到fy根触点,fy树的高度要+1
 			parents[fx] = fy;
 			ranks[fy] += 1;
 		}

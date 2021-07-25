@@ -67,4 +67,9 @@ public class _76_最小覆盖子串 {
 
 		return minSize == Integer.MAX_VALUE ? "" : s.substring(start, start + minSize);
 	}
+
+	public static void main(String[] args) {
+		_76_最小覆盖子串 _76_最小覆盖子串 = new _76_最小覆盖子串();
+		_76_最小覆盖子串.minWindow("ADOBECODEBANC", "ABC");
+	}
 }

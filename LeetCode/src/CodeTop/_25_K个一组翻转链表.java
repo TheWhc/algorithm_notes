@@ -27,6 +27,7 @@ public class _25_K个一组翻转链表 {
 				head = tmp;
 				count--;
 			}
+			head = cur;
 		}
 
 		return head;

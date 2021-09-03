@@ -7,7 +7,7 @@ package CodeTop;
  */
 public class _142_环形链表II {
 
-	public ListNode detectCycle(ListNode head) {
+	/*public ListNode detectCycle(ListNode head) {
 		if(head == null || head.next == null) {
 			return null;
 		}
@@ -26,6 +26,35 @@ public class _142_环形链表II {
 		}
 
 		fast = head;
+		while(fast != slow) {
+			fast = fast.next;
+			slow = slow.next;
+		}
+
+		return fast;
+	}*/
+
+	public ListNode detectCycle(ListNode head) {
+		if(head == null || head.next == null) {
+			return null;
+		}
+
+		ListNode fast = head;
+		ListNode slow = head;
+
+		while(true) {
+			if(fast == null || fast.next == null) {
+				return null;
+			}
+ 			fast = fast.next.next;
+			slow = slow.next;
+			if(fast == slow) {
+				break;
+			}
+		}
+
+		fast = head;
+
 		while(fast != slow) {
 			fast = fast.next;
 			slow = slow.next;

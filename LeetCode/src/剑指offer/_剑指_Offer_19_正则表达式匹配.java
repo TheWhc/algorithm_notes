@@ -73,6 +73,13 @@ public class _剑指_Offer_19_正则表达式匹配 {
 			}
 		}
 
+		for (int i = 0; i < s.length()+1; i++) {
+			for (int j = 0; j < p.length()+1; j++) {
+				System.out.print(dp[i][j] + " ");
+			}
+			System.out.println();
+		}
+
 		return dp[m][n];
 	}
 

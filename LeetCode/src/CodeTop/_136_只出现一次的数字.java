@@ -8,12 +8,10 @@ package CodeTop;
 public class _136_只出现一次的数字 {
 
 	public int singleNumber(int[] nums) {
-		int a = nums[0];
-
+		int res = nums[0];
 		for (int i = 1; i < nums.length; i++) {
-			a ^= nums[i];
+			res ^= nums[i];
 		}
-
-		return a;
+		return res;
 	}
 }

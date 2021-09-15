@@ -8,7 +8,7 @@ package CodeTop;
 public class _680_验证回文字符串Ⅱ {
 
 	public boolean validPalindrome(String s) {
-
+		return false;
 	}
 
 }

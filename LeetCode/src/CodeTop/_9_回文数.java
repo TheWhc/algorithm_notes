@@ -27,7 +27,7 @@ public class _9_回文数 {
 		return true;
 	}*/
 
-	public boolean isPalindrome(int x) {
+	/*public boolean isPalindrome(int x) {
 		if(x < 0) {
 			return false;
 		}
@@ -40,6 +40,20 @@ public class _9_回文数 {
 		}
 
 		return cur == x;
-	}
+	}*/
 
+	public boolean isPalindrome(int x) {
+		if (x < 0) {
+			return false;
+		}
+
+		int cur = 0;
+		int num = x;
+		while(num > 0) {
+			cur = cur * 10 + num % 10;
+			num /= 10;
+		}
+
+		return cur == x;
+	}
 }

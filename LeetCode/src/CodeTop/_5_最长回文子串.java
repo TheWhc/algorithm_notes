@@ -41,7 +41,7 @@ public class _5_最长回文子串 {
 		return s.substring(start, start + maxLen);
 	}*/
 
-	public String longestPalindrome(String s) {
+	/*public String longestPalindrome(String s) {
 		if(s.length() < 2) {
 			return s;
 		}
@@ -70,5 +70,65 @@ public class _5_最长回文子串 {
 		}
 
 		return right - left - 1;
+	}*/
+
+
+	/*public String longestPalindrome(String s) {
+		int n = s.length();
+		boolean[][] dp = new boolean[n][n];
+		int maxLen = 1;
+		int start = 0;
+
+
+		// 从下往上,从左往右
+		for (int i = n-1; i >= 0; i--) {
+			for (int j = i; j < n; j++) {
+				if(s.charAt(i) != s.charAt(j)) {
+					continue;
+				} else {
+					if(j - i <= 1) {
+						dp[i][j] = true;
+					} else {
+						dp[i][j] = dp[i+1][j-1];
+					}
+
+					if(dp[i][j] && (j - i + 1) > maxLen) {
+						maxLen = j - i + 1;
+						start = i;
+					}
+				}
+			}
+		}
+
+		return s.substring(start, start + maxLen);
+	}*/
+
+	// 中心扩展法
+	public String longestPalindrome(String s) {
+		int start = 0;
+		int maxLen = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+			int len1 = extend(s, i, i);
+			int len2 = extend(s, i, i + 1);
+
+			int len = Math.max(len1, len2);
+			if(len > maxLen) {
+				start = i - (len - 1) / 2;
+				maxLen = len;
+			}
+		}
+
+		return s.substring(start, start + maxLen);
 	}
+
+	private int extend(String s, int left, int right) {
+		while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+			left--;
+			right++;
+		}
+
+		return right - left - 1;
+	}
+
 }

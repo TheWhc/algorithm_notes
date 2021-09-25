@@ -7,7 +7,7 @@ package CodeTop;
  */
 public class _234_回文链表 {
 
-	public boolean isPalindrome(ListNode head) {
+	/*public boolean isPalindrome(ListNode head) {
 		if(head == null) {
 			return false;
 		}
@@ -48,6 +48,71 @@ public class _234_回文链表 {
 		ListNode fast = head;
 		ListNode slow = head;
 		while(fast.next != null && fast.next.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+		}
+
+		return slow;
+	}*/
+
+
+	public boolean isPalindrome(ListNode head) {
+		if(head == null) {
+			return false;
+		}
+
+		// 1. 找到链表的中间节点
+		ListNode middleNode = findMiddleNode(head);
+
+		// 2. 翻转链表
+		ListNode newListNode = reverseNode(middleNode);
+
+		// 比较两条链表
+		while(newListNode != null) {
+			if(head.val != newListNode.val) {
+				return false;
+			}
+			head = head.next;
+			newListNode = newListNode.next;
+		}
+
+		return true;
+	}
+
+	// 递归翻转
+	/*private ListNode reverseNode(ListNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+
+		ListNode nextNode = reverseNode(head.next);
+		head.next.next = head;
+		head.next = null;
+		return nextNode;
+	}*/
+
+	// 迭代翻转
+	private ListNode reverseNode(ListNode head) {
+		if(head == null || head.next == null) {
+			return head;
+		}
+
+		ListNode pre = null;
+		ListNode cur = head;
+		while(cur != null) {
+			ListNode tmp = cur.next;
+			cur.next = pre;
+			pre = cur;
+			cur = tmp;
+		}
+
+		return pre;
+	}
+
+	// 快慢指针
+	private ListNode findMiddleNode(ListNode head) {
+		ListNode fast = head, slow = head;
+		while(fast != null && fast.next != null) {
 			fast = fast.next.next;
 			slow = slow.next;
 		}

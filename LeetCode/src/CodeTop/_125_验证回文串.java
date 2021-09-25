@@ -7,7 +7,7 @@ package CodeTop;
  */
 public class _125_验证回文串 {
 
-	public boolean isPalindrome(String s) {
+	/*public boolean isPalindrome(String s) {
 		StringBuilder palindrome = new StringBuilder();
 		for (int i = 0; i < s.length(); i++) {
 			if(s.charAt(i) >= '0' && s.charAt(i) <= '9' ||
@@ -38,6 +38,30 @@ public class _125_验证回文串 {
 	public static void main(String[] args) {
 		_125_验证回文串 _125_验证回文串 = new _125_验证回文串();
 		System.out.println(_125_验证回文串.isPalindrome("A man, a plan, a canal: Panama"));
+	}*/
+
+	public boolean isPalindrome(String s) {
+		StringBuilder palindrome = new StringBuilder();
+		for (int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) >= '0' && s.charAt(i) <= '9' || s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+				palindrome.append(s.charAt(i));
+			}  else if(s.charAt(i) >= 'A' && s.charAt(i) <= 'Z') {
+				palindrome.append((char)('a' + (s.charAt(i) - 'A')));
+			}
+		}
+
+		String str = palindrome.toString();
+		int left = 0;
+		int right = str.length()-1;
+		while(left < right) {
+			if(str.charAt(left) != str.charAt(right)) {
+				return false;
+			}
+			left++;
+			right--;
+		}
+
+		return true;
 	}
 
 }

@@ -29,7 +29,7 @@ public class _215_数组中的第K个最大元素 {
 	/**
 	 * 思路: 实现一个小根堆
 	 */
-	public int findKthLargest(int[] nums, int k) {
+	/*public int findKthLargest(int[] nums, int k) {
 		if(k > nums.length) {
 			return Integer.MIN_VALUE;
 		}
@@ -73,5 +73,48 @@ public class _215_数组中的第K个最大元素 {
 	public static void main(String[] args) {
 		_215_数组中的第K个最大元素 _215_数组中的第K个最大元素 = new _215_数组中的第K个最大元素();
 		System.out.println(_215_数组中的第K个最大元素.findKthLargest(new int[]{3, 2, 1, 5, 6, 4}, 2));
+	}*/
+
+
+	// 自己实现一个最小堆
+	public int findKthLargest(int[] nums, int k) {
+		for (int i = nums.length / 2 - 1; i >= 0; i--) {
+			// 原地建堆
+			heapify(nums, nums.length, i);
+		}
+
+		// 交换堆顶元素和末尾元素,一直到k
+		for (int i = nums.length-1; i >= k; i--) {
+			swap(nums, 0, i);
+			heapify(nums, i, 0);
+		}
+
+		return nums[0];
 	}
+
+	private void heapify(int[] nums, int n, int i) {
+		int largest = i;
+		int lson = 2 * largest + 1;
+		int rson = 2 * largest + 2;
+
+		if(lson < n && nums[largest] > nums[lson]) {
+			largest = lson;
+		}
+
+		if(rson < n && nums[largest] > nums[rson]) {
+			largest = rson;
+		}
+
+		if(largest != i) {
+			swap(nums, largest, i);
+			heapify(nums, n, largest);
+		}
+	}
+
+	private void swap(int[] nums, int idx1, int idx2) {
+		int temp = nums[idx1];
+		nums[idx1] = nums[idx2];
+		nums[idx2] = temp;
+	}
+
 }

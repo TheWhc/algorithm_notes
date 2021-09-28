@@ -69,7 +69,7 @@ public class _25_K个一组翻转链表 {
 
 
 	// 栈
-	public ListNode reverseKGroup(ListNode head, int k) {
+	/*public ListNode reverseKGroup(ListNode head, int k) {
 		Stack<ListNode> stack = new Stack<>();
 		ListNode dummy = new ListNode(0);
 		// 翻转后的新链表
@@ -100,6 +100,63 @@ public class _25_K个一组翻转链表 {
 		}
 
 		return dummy.next;
+	}*/
+
+	// 递归翻转
+	/*public ListNode reverseKGroup(ListNode head, int k) {
+		int count = 0;
+		ListNode cur = head;
+		while(cur != null && count != k) {
+			cur = cur.next;
+			count++;
+		}
+
+		if(count == k) {
+			cur = reverseKGroup(cur, k);
+			while(count > 0) {
+				ListNode tmp = head.next;
+				head.next = cur;
+				cur = head;
+				head = tmp;
+				count--;
+			}
+
+			head = cur;
+		}
+
+		return head;
+	}*/
+
+	// 尾插法
+	public ListNode reverseKGroup(ListNode head, int k) {
+		ListNode dummyNode = new ListNode(0);
+		dummyNode.next = head;
+		ListNode pre = dummyNode, tail = dummyNode;
+
+		while(true) {
+			int count = 0;
+			while(tail != null && count != k) {
+				tail = tail.next;
+				count++;
+			}
+
+			if(tail == null) {
+				break;
+			}
+
+			ListNode head1 = pre.next;
+			while(pre.next != tail) {
+				ListNode cur = pre.next;
+				pre.next = cur.next;
+				cur.next = tail.next;
+				tail.next = cur;
+			}
+
+			pre = head1;
+			tail = head1;
+		}
+
+		return dummyNode.next;
 	}
 
 }

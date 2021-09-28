@@ -1,6 +1,7 @@
 package CodeTop;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
  */
 public class _146_LRU缓存机制 {
 
-	class Node {
+	/*class Node {
 		int k, v;
 		Node l, r;
 		Node(int _k, int _v) {
@@ -70,6 +71,36 @@ public class _146_LRU缓存机制 {
 			node.l.r = node.r;
 			node.r.l = node.l;
 		}
+	}*/
+
+	private int limit;
+	private Map<Integer, Integer> map = new LinkedHashMap<>();
+
+	public _146_LRU缓存机制(int capacity) {
+		this.limit = capacity;
 	}
+
+	public int get(int key) {
+		if(!map.containsKey(key)) {
+			return -1;
+		}
+
+		int val = map.remove(key);
+		map.put(key, val);
+		return val;
+	}
+
+	public void put(int key, int value) {
+		if(map.containsKey(key)) {
+			map.remove(key);
+		}
+
+		map.put(key, value);
+		// 超过缓存大小,删除最近最少使用的key
+		if(map.size() > limit) {
+			map.remove(map.entrySet().iterator().next().getKey());
+		}
+	}
+
 
 }

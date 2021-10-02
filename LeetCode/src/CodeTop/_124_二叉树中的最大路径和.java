@@ -23,18 +23,18 @@ public class _124_二叉树中的最大路径和 {
 	 * 当前结点就可以把左右两棵子树的求解结果进行综合，就是题目要求的 经过某个结点 的最大路径和。
 	 *
 	 */
-	int res = Integer.MIN_VALUE; // 定义一个全局变量
+	/*int res = Integer.MIN_VALUE; // 定义一个全局变量
 	public int maxPathSum(TreeNode root) {
 		dfs(root);
 		return res;
 	}
 
-	/**
+	*//**
 	 * 规定 node 必须被选取
 	 *
 	 * @param node
 	 * @return 返回必须经过 node 的直的路径的最大和，这条路径到 node 为止，即：这条路径在左子树和右子树的路径中只能选择一条
-	 */
+	 *//*
 
 	private int dfs(TreeNode node) {
 		if(node == null) {
@@ -52,5 +52,37 @@ public class _124_二叉树中的最大路径和 {
 
 		// 返回左右子树较长的路径加上根节点值
 		return Math.max(leftSum, rightSum) + node.val;
+	}*/
+
+
+	/**
+	 * 思路：全部变量 + 递归
+	 *
+	 * 1. 求左子树和右子树能返回的最大值,选一个较大的
+	 * 2. 在递归的过程中考虑包含当前根节点的最大路径(更新maxRes的值)
+	 * 3. 在最后只返回包含当前根节点和左子树或者右子树的路径
+	 *
+	 * https://leetcode.wang/leetcode-124-Binary-Tree-Maximum-Path-Sum.html
+	 */
+	int maxRes = Integer.MIN_VALUE;
+	public int maxPathSum(TreeNode root) {
+		helper(root);
+		return maxRes;
+	}
+
+	private int helper(TreeNode root) {
+		if(root == null) {
+			return 0;
+		}
+
+		int left = Math.max(helper(root.left), 0);
+		int right = Math.max(helper(root.right), 0);
+
+		// 过程中更新maxRes的值
+		maxRes = Math.max(maxRes, root.val + left + right);
+
+		// 最后返回包含当前根节点和左子树或者右子树的路径
+		// (不能同时返回当前节点和左子树和右子树,因为同时选择了的话,就无法通过上一层根节点的路径
+		return Math.max(left, right) + root.val;
 	}
 }

@@ -73,7 +73,7 @@ public class _300_最长递增子序列 {
 	 * 时间： O(nlogn)
 	 *
 	 * 1. dp[i]表示长度为i+1的所有上升子序列的末尾的最小值
-	 * 2. 递推公式,在dp数组中查找第一个大于等于的数的位置,若找不到直接添加到末尾
+	 * 2. 递推公式,在dp数组中查找第一个大于等于nums[i]的数的位置,若找不到直接添加到末尾
 	 * 3. 再进行第2步的时候,由于dp数组一定是有序的,所以可以通过二分查找插入数的位置
 	 *
 	 * 举例: 0 1 0 3 2 3
@@ -84,7 +84,7 @@ public class _300_最长递增子序列 {
 	 * i = 4 时, 序列为 0 1 2
 	 * i = 5 时, 序列为 0 1 2 3
 	 */
-	public int lengthOfLIS(int[] nums) {
+	/*public int lengthOfLIS(int[] nums) {
 		// dp[i]: 表示长度为i+1的所有上升子序列的末尾的最小值
 		int[] dp = new int[nums.length];
 
@@ -117,5 +117,25 @@ public class _300_最长递增子序列 {
 	public static void main(String[] args) {
 		_300_最长递增子序列 _300_最长递增子序列 = new _300_最长递增子序列();
 		System.out.println(_300_最长递增子序列.lengthOfLIS(new int[]{0, 1, 0, 3, 2, 3}));
+	}*/
+
+	// 动态规划
+	public int lengthOfLIS(int[] nums) {
+		int[] dp = new int[nums.length];
+
+		Arrays.fill(dp, 1);
+
+		int maxRes = 1;
+
+		for (int i = 1; i < nums.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if(nums[i] > nums[j]) {
+					dp[i] = Math.max(dp[i], dp[j] + 1);
+				}
+			}
+			maxRes = Math.max(maxRes, dp[i]);
+		}
+
+		return maxRes;
 	}
 }

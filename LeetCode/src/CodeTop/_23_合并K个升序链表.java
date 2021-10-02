@@ -1,5 +1,7 @@
 package CodeTop;
 
+import java.util.PriorityQueue;
+
 /**
  * @ClassName: _23_合并K个升序链表
  * @Author: whc
@@ -12,12 +14,12 @@ public class _23_合并K个升序链表 {
 	 *
 	 * 思路2：分而治之,两两合并
 	 */
-	public ListNode mergeKLists(ListNode[] lists) {
+	/*public ListNode mergeKLists(ListNode[] lists) {
 		if(lists == null || lists.length == 0) {
 			return null;
 		}
 
-		/*if(lists.length == 1) {
+		*//*if(lists.length == 1) {
 			return lists[0];
 		}
 
@@ -26,7 +28,7 @@ public class _23_合并K个升序链表 {
 
 		}
 
-		return lists[0];*/
+		return lists[0];*//*
 
 		return merge(lists, 0, lists.length-1);
 	}
@@ -43,9 +45,9 @@ public class _23_合并K个升序链表 {
 		return mergeTwoLists(l1, l2);
 	}
 
-	/**
+	*//**
 	 * 递归合并两条链表
-	 */
+	 *//*
 	private ListNode mergeTwoLists(ListNode list1, ListNode list2) {
 		if(list1 == null) {
 			return list2;
@@ -61,7 +63,7 @@ public class _23_合并K个升序链表 {
 			list2.next = mergeTwoLists(list1, list2.next);
 			return list2;
 		}
-	}
+	}*/
 
 
 	/**
@@ -71,7 +73,7 @@ public class _23_合并K个升序链表 {
 	 * k为链表个数
 	 * n为所有链表中元素的总和
 	 */
-	/*public ListNode mergeKLists(ListNode[] lists) {
+	public ListNode mergeKLists(ListNode[] lists) {
 		if(lists == null || lists.length == 0) {
 			return null;
 		}
@@ -98,5 +100,5 @@ public class _23_合并K个升序链表 {
 		}
 
 		return res.next;
-	}*/
+	}
 }

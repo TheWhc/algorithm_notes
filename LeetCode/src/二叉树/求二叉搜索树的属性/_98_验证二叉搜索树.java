@@ -73,7 +73,7 @@ public class _98_验证二叉搜索树 {
 	 *  4. 当前节点指针cur为空时, 当栈的元素出栈, cur指向出栈元素的右节点(如果有右节点,再下一次的时候右节点就能入栈了)
 	 *  		出栈的同时,判断和前一个节点的值是否符合二叉搜索树的定义
 	 */
-	TreeNode pre = null; // 记录前一个节点
+	/*TreeNode pre = null; // 记录前一个节点
 	public boolean isValidBST(TreeNode root) {
 		if(root == null) {
 			return true;
@@ -96,7 +96,7 @@ public class _98_验证二叉搜索树 {
 		}
 
 		return true;
-	}
+	}*/
 
 	/**
 	 * 思路: 将二叉搜索树转化为数组(列表)
@@ -122,4 +122,23 @@ public class _98_验证二叉搜索树 {
 		list.add(root.val);
 		dfs(root.right);
 	}*/
+
+	static long preVal = Long.MIN_VALUE;
+	public static boolean isValidBST(TreeNode root) {
+		if(root == null) {
+			return true;
+		}
+		boolean left = isValidBST(root.left);
+		if(preVal >= root.val) {
+			return false;
+		} else {
+			preVal = root.val;
+		}
+		boolean right = isValidBST(root.right);
+		return left && right;
+	}
+	public static void main(String[] args) {
+		TreeNode root = new TreeNode(-2147483648);
+		isValidBST(root);
+	}
 }
